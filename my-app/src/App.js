@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Router from './components/router';
 import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
 
 import './App.css';
 
@@ -38,13 +39,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <header className="">
-            <Link to="/">Courses</Link>
-            <Link to="/login">Login</Link>
-        </header>
-        <Router/>
-        <button onClick={this.simpleAction}>Test redux action</button>
+        <Nav className="mr-auto">
+          <Nav.Link><Link to="/">Courses</Link></Nav.Link>
+          <Nav.Link> <Link to="/login">Login</Link></Nav.Link>
+         </Nav>
+         <Router/>
       </div>
     );
   }
