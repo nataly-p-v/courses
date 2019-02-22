@@ -40,8 +40,8 @@ class App extends Component {
     return (
       <div className="App">
         <Nav className="mr-auto">
-          <Nav.Link><Link to="/">Courses</Link></Nav.Link>
-          <Nav.Link> <Link to="/login">Login</Link></Nav.Link>
+          <Link to="/" className={"nav-link"}>Courses</Link>
+          <Link to="/login" className={"nav-link"}>Login</Link>
          </Nav>
          <Router/>
       </div>
