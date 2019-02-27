@@ -8,6 +8,8 @@ const Main = () => (
     <Switch>
         <Route exact path={"/courses"} component={Courses} />
         <Route exact path={"/login"} component={Login} />
+        <Route path="/courses/:courseId" component={Courses}/>
+        <Route path="/courses/new" component={Courses}/>
     </Switch>
 );
 export default Main;
