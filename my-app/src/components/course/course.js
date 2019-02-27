@@ -3,7 +3,17 @@ import React, {Component} from 'react';
 class Course extends Component {
     constructor() {
         super();
-    }
+        this.editCourse = this.editCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
+    };
+
+    editCourse = ({ target: { value } }) => {
+        console.log(value)
+    };
+
+    deleteCourse = ({ target: { value } }) => {
+        console.log(value)
+    };
 
     render() {
 
@@ -15,8 +25,8 @@ class Course extends Component {
                 <br/>
                 <span className={"courses-duration"}>Duration: {this.props.duration}</span>
                 <span className="button-wrapper">
-                    <button className={"btn btn-primary"}>Edit</button>
-                    <button className={"btn btn-primary"}>Delete</button>
+                    <button className={"btn btn-primary"} onClick={this.editCourse}>Edit</button>
+                    <button className={"btn btn-primary"} onClick={this.deleteCourse}>Delete</button>
                 </span>
             </li>
         );

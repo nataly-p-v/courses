@@ -94,7 +94,7 @@ class Login extends Component {
                         <Form.Control type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleUserPassword} onBlur={this.renderPasswordError}/>
                         <Form.Text>* enter</Form.Text>
                       </Form.Group>
-                      <Button variant="primary" type="submit"  className="fourth btn btn-primary" disabled={!this.state.formValid}>
+                      <Button variant="primary" type="submit"  className="btn btn-primary" disabled={!this.state.formValid}>
                         Login
                       </Button>
                     </Form>
