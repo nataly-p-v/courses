@@ -25,6 +25,9 @@ class Courses extends Component {
         return (
             <div>
                 <h1>Courses</h1>
+                <div className="button-wrapper">
+                    <button className={"btn btn-primary"}>Add course</button>
+                </div>
                 <ul className="courses-list">
                     {courses && courses.map((item, i) => <Course1 {...item} key={i} />)}
                 </ul>

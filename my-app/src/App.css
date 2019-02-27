@@ -89,6 +89,17 @@ ul, ol {
   margin-top: 50px;
 }
 
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.button-wrapper .btn{
+    margin-left:10px;
+}
+
 .formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
