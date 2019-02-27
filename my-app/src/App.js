@@ -34,6 +34,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <div className="logo">
+              <div className="fadeIn first">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/2000px-Service_mark.svg.png" id="icon" alt="User Icon" />
+              </div>
+          </div>
         <Nav className="mr-auto">
           <Link to="/courses" className={"nav-link"}>Courses</Link>
           <Link to="/login" className={"nav-link"}>Login</Link>

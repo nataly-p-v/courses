@@ -71,25 +71,20 @@ class Login extends Component {
                 return <Redirect to="/courses"/>
             }
         return (
-                <div className="wrapper fadeInDown">
+                <div className="wrapper ">
                   <div className="formContent">
-
-                    <div className="fadeIn first">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/2000px-Service_mark.svg.png" id="icon" alt="User Icon" />
-                    </div>
-
-                    <Form className={`form-wrapper ${this.state.formValid ? '' : 'has-error'}`} onSubmit={this.submitLoginForm.bind(this)}>
+                    <Form className={`form-wrapper`} onSubmit={this.submitLoginForm}>
                         <div className="error">wrong login or password</div>
                       <Form.Group controlId="formBasicLogin">
                         <Form.Label>Login</Form.Label>
-                        <Form.Control type="text" name="login" placeholder="Enter login" className="fadeIn second input" value={this.state.login} onChange={this.handleUserLogin}/>
+                        <Form.Control type="text" name="login" placeholder="Enter login" className={`second input ${this.state.loginValid ? '' : 'has-error'}`} value={this.state.login} onChange={this.handleUserLogin}/>
                       </Form.Group>
 
                       <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" placeholder="Password" className="fadeIn third input" value={this.state.password} onChange={this.handleUserPassword}/>
+                        <Form.Control type="password" name="password" placeholder="Password" className={`third input ${this.state.passwordValid ? '' : 'has-error'}`} value={this.state.password} onChange={this.handleUserPassword}/>
                       </Form.Group>
-                      <Button variant="primary" type="submit"  className="fadeIn fourth btn btn-primary" disabled={!this.state.formValid}>
+                      <Button variant="primary" type="submit"  className="fourth btn btn-primary" disabled={!this.state.formValid}>
                         Login
                       </Button>
                     </Form>
