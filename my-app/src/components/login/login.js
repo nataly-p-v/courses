@@ -1,64 +1,75 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FormErrors } from './formErrors';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor (props) {
       super(props);
       this.state = {
-          email: '',
+          login: '',
           password: '',
-          formErrors: {email: '', password: ''},
-          emailValid: false,
+          loginValid: false,
           passwordValid: false,
-          formValid: false
+          formValid: false,
+          redirectToReferrer: false
         };
-      this.handleUserInput = this.handleUserInput.bind(this);
+      this.handleUserLogin = this.handleUserLogin.bind(this);
+      this.handleUserPassword = this.handleUserPassword.bind(this);
+      this.submitLoginForm = this.submitLoginForm.bind(this);
     }
 
+    handleUserLogin = ({ target: { value } }) => {
 
-    handleUserInput = (e) => {
-        const type = e.target.type;
-        const value = e.target.value;
-        this.setState({[type]: value},
-            () => { this.validateField(type, value) });
+        this.setState({
+            login: value
+        },
+        () => { this.validateLoginField(value) });
+    };
+
+    handleUserPassword = ({ target: { value } }) => {
+        this.setState({
+            password: value
+        },
+        () => { this.validatePasswordField(value) });
+    };
+
+
+
+    validateLoginField(value) {
+        let regexp = /[a-zA-Z]+/g;
+        let loginValid = regexp.test(value);
+
+        this.setState({
+            loginValid: loginValid
+        }, this.validateForm);
     }
 
+    validatePasswordField(value) {
+        let regexp = /^\w+$/g;
+        let passwordValid = regexp.test(value);
 
-
-    validateField(fieldName, value) {
-        let fieldValidationErrors = this.state.formErrors;
-        let emailValid = this.state.emailValid;
-        let passwordValid = this.state.passwordValid;
-
-        switch(fieldName) {
-            case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-                break;
-            case 'password':
-                passwordValid = value.length >= 6;
-                fieldValidationErrors.password = passwordValid ? '': ' is too short';
-                break;
-            default:
-                break;
-        }
-        this.setState({formErrors: fieldValidationErrors,
-            emailValid: emailValid,
+        this.setState({
             passwordValid: passwordValid
         }, this.validateForm);
     }
 
     validateForm() {
-        this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+        this.setState({formValid: this.state.loginValid && this.state.passwordValid});
+    }
+    submitLoginForm (e) {
+        e.preventDefault();
+        this.setState({
+            redirectToReferrer: true
+        })
     }
 
-    errorClass(error) {
-        return(error.length === 0 ? '' : 'has-error');
-    }
 
     render () {
+        const redirectToReferrer = this.state.redirectToReferrer;
+            if (redirectToReferrer === true) {
+                return <Redirect to="/courses"/>
+            }
         return (
                 <div className="wrapper fadeInDown">
                   <div className="formContent">
@@ -66,19 +77,17 @@ class Login extends Component {
                     <div className="fadeIn first">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Service_mark.svg/2000px-Service_mark.svg.png" id="icon" alt="User Icon" />
                     </div>
-                      <div className="panel panel-default">
-                          <FormErrors formErrors={this.state.formErrors} />
-                      </div>
 
-                    <Form className={`form-wrapper`}>
-                      <Form.Group controlId="formBasicEmail" className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" className="fadeIn second input" value={this.state.email} onChange={this.handleUserInput}/>
+                    <Form className={`form-wrapper ${this.state.formValid ? '' : 'has-error'}`} onSubmit={this.submitLoginForm.bind(this)}>
+                        <div className="error">wrong login or password</div>
+                      <Form.Group controlId="formBasicLogin">
+                        <Form.Label>Login</Form.Label>
+                        <Form.Control type="text" name="login" placeholder="Enter login" className="fadeIn second input" value={this.state.login} onChange={this.handleUserLogin}/>
                       </Form.Group>
 
-                      <Form.Group controlId="formBasicPassword" className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                      <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" className="fadeIn third input" value={this.state.password} onChange={this.handleUserInput}/>
+                        <Form.Control type="password" name="password" placeholder="Password" className="fadeIn third input" value={this.state.password} onChange={this.handleUserPassword}/>
                       </Form.Group>
                       <Button variant="primary" type="submit"  className="fadeIn fourth btn btn-primary" disabled={!this.state.formValid}>
                         Login
@@ -86,6 +95,7 @@ class Login extends Component {
                     </Form>
 
                   </div>
+
                 </div>
         )
     }

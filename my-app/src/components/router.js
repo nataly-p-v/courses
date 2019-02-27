@@ -6,7 +6,7 @@ import { Switch, Route} from 'react-router-dom';
 
 const Main = () => (
     <Switch>
-        <Route exact path={"/"} component={Courses} />
+        <Route exact path={"/courses"} component={Courses} />
         <Route exact path={"/login"} component={Login} />
     </Switch>
 );
