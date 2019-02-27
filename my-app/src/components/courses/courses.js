@@ -1,37 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { coursesFetchData } from '../../actions/courses';
 
 class Courses extends Component {
+    constructor() {
+        super();
+        this.state = {
+            courses: [
+                {
+                    duration: 1,
+                    title: 'List item 1'
+                },
+                {
+                    duration: 2,
+                    title: 'List item 2'
+                },
+                {
+                    duration: 3,
+                    title: 'List item 3'
+                },
+                {
+                    duration: 4,
+                    title: 'List item 4'
+                }
+            ],
+            hasErrored: false,
+            isLoading: false
+        };
+    }
     componentDidMount() {
-        this.props.fetchData('http://www.mocky.io/v2/5c753ea63100000e00c233a9');
+        //console.log('http://www.mocky.io/v2/5c753ea63100000e00c233a9');
     }
 
-    coursesFetchData = (event) => {
-        this.props.coursesFetchData();
-        console.log(this.props)
-    };
-
     render() {
-        if (this.props.coursesHasErrored) {
-            return <p>Sorry! There was an error loading the courses</p>;
+        if (this.state.hasErrored) {
+            return <p>Sorry! There was an error loading the items</p>;
         }
-
-        if (this.props.coursesIsLoading) {
+        if (this.state.isLoading) {
             return <p>Loading…</p>;
         }
-
         return (
             <ul>
-                {console.log(this.props.coursesFetchDataSuccess)}
-                {/*{this.props.courses ?*/}
-                    {/*this.props.courses.map((item) => (*/}
-                        {/*<li key={item.duration}>*/}
-                            {/*{item.title}*/}
-                        {/*</li>*/}
-                    {/*))*/}
-                    {/*: ''}*/}
-
+                {this.state.courses.map((item) => (
+                    <li key={item.duration}>
+                        {item.title}
+                    </li>
+                ))}
             </ul>
         );
     }
@@ -44,7 +57,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    fetchData: (url) => dispatch(coursesFetchData(url))
+    ...dispatch
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Courses);
