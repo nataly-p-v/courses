@@ -7,13 +7,11 @@ import Nav from 'react-bootstrap/Nav';
 
 import './App.css';
 
-import { simpleAction } from './actions/simpleAction'
-
 /*
  * mapDispatchToProps
 */
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
+    ...dispatch
 })
 
 /*
@@ -32,9 +30,6 @@ class App extends Component {
    * @memberof App
    * @summary handles button click
    */
-  simpleAction = (event) => {
-    this.props.simpleAction();
-  }
 
   render() {
     return (

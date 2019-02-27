@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  max-width:1200px;
+  margin:0 auto;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  height: 100vh;
 }
 
 .App-logo {
@@ -18,6 +22,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.nav {
+    border-bottom:1px solid black;
+    padding-bottom: 5px;
+}
 
 .App-link {
   color: #61dafb;
@@ -35,6 +43,12 @@ a {
   text-decoration: none;
   font-weight: 400;
 }
+h1 {
+    font-size: 20px;
+    color: #232323;
+    text-transform: uppercase;
+    margin:10px;
+}
 
 h2 {
   text-align: center;
@@ -43,9 +57,12 @@ h2 {
   text-transform: uppercase;
   display:inline-block;
   margin: 40px 8px 10px 8px;
-  color: #cccccc;
+  color: #232323;
 }
 
+ul, ol {
+    padding-left:0;
+}
 .form-wrapper {
     padding:15px;
 }
@@ -89,6 +106,18 @@ h2 {
 .hidden{
     display:none;
 }
+.courses-list {
+    padding:0 10px;
+}
+
+.courses{
+    list-style:none;
+    border:1px solid black;
+    text-align: left;
+    padding: 5px;
+    margin-bottom:10px;
+}
+
 
 /* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {
